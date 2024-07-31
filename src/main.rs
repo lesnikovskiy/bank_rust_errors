@@ -1,14 +1,31 @@
 #[derive(Debug)]
 struct Account {
-    balance: u32,
-    id: i32,
+    id: u32,
+    balance: i32,
     holder: String,
+}
+
+impl Account {
+    fn new(id: u32, holder: String) -> Self {
+        Account {
+            id,
+            holder,
+            balance: 0,
+        }
+    }
 }
 
 #[derive(Debug)]
 struct Bank {
-    name: String,
     accounts: Vec<Account>,
+}
+
+impl Bank {
+    fn new() -> Self {
+        Bank {
+            accounts: vec![],
+        }
+    }
 }
 
 fn main() {
