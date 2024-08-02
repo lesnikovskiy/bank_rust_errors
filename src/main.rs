@@ -36,12 +36,18 @@ fn change_account(account: &mut Account) {
     account.balance = 100;
 }
 
+fn hack_bank(bank: &mut Bank) {
+    bank.accounts.push(Account::new(666, String::from("Satan")));
+}
+
 fn main() {
     let mut bank = Bank::new();
     let account1 = Account::new(1, String::from("Ruslan Lesnikovskiy"));
     let account2 = Account::new(2, String::from("Vasya"));
     bank.accounts.push(account1);
     bank.accounts.push(account2);
+
+    hack_bank(&mut bank);
 
     print_accounts(&bank);
     print_accounts(&bank);
