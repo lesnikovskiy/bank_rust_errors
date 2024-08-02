@@ -13,10 +13,6 @@ impl Account {
             balance: 0,
         }
     }
-
-    fn setBalance(&mut self, balance: i32) {
-        self.balance = balance;
-    }
 }
 
 #[derive(Debug)]
@@ -31,64 +27,24 @@ impl Bank {
         }
     }
 
-    fn addAccount(&mut self, account: Account) {
+    fn add_account(&mut self, account: Account) {
         self.accounts.push(account);
     }
-}
 
-fn print_accounts(bank: &Bank) {
-    println!("{:#?}", bank.accounts);
-}
-
-fn change_account(account: &mut Account) {
-    account.balance = 100;
-}
-
-fn hack_bank(bank: &mut Bank) {
-    bank.accounts.push(Account::new(666, String::from("Satan")));
-}
-
-fn add_account(bank: &mut Bank, account: Account) {
-    bank.accounts.push(account);
-}
-
-fn print_bank(bank: &Bank) {
-    println!("{:#?}", bank);
+    // fn total_balance(&mut self) -> i32 {
+    //     let mut total = 0;
+    //     for acc in self.accounts {
+    //         total += acc.balance;
+    //     }
+    //     total
+    // }
 }
 
 fn main() {
     let mut bank = Bank::new();
-    let account1 = Account::new(1, String::from("Ruslan Lesnikovskiy"));
-    let account2 = Account::new(2, String::from("Vasya"));
-    bank.accounts.push(account1);
-    bank.accounts.push(account2);
+    let account = Account::new(1, String::from("me"));
 
-    hack_bank(&mut bank);
+    bank.add_account(account);
 
-    print_accounts(&bank);
-    print_accounts(&bank);
-
-    let mut account = Account::new(3, String::from("Trump"));
-    change_account(&mut account);
-    println!("{:#?}", account);
-
-    let mut monobank = Bank::new();
-    let mut account = Account::new(299, String::from("Genadiy Moskalenko"));
-    account.setBalance(999);
-
-    add_account(&mut monobank, account);
-
-    println!("{:#?}", monobank);
-
-    let mut privat = Bank::new();
-    let marina_acc = Account::new(12, String::from("Marina Buzova"));
-    privat.addAccount(marina_acc);
-
-    print_bank(&privat);
-
-    // values from stack do not follow ownership rules
-    // all numbers, char, tuples, arrays, bool
-    let num = 5;
-    let other_num = num;
-    println!("{} {}", num, other_num);
+    println!("{:#?}", bank);
 }
