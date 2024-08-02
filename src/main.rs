@@ -40,6 +40,10 @@ fn hack_bank(bank: &mut Bank) {
     bank.accounts.push(Account::new(666, String::from("Satan")));
 }
 
+fn add_account(bank: &mut Bank, account: Account) {
+    bank.accounts.push(account);
+}
+
 fn main() {
     let mut bank = Bank::new();
     let account1 = Account::new(1, String::from("Ruslan Lesnikovskiy"));
@@ -55,4 +59,9 @@ fn main() {
     let mut account = Account::new(3, String::from("Trump"));
     change_account(&mut account);
     println!("{:#?}", account);
+
+    let mut monobank = Bank::new();
+    let account = Account::new(299, String::from("Genadiy Moskalenko"));
+    add_account(&mut monobank, account);
+    println!("{:#?}", monobank);
 }
