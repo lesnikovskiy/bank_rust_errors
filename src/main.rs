@@ -13,6 +13,10 @@ impl Account {
             balance: 0,
         }
     }
+
+    fn setBalance(&mut self, balance: i32) {
+        self.balance = balance;
+    }
 }
 
 #[derive(Debug)]
@@ -25,6 +29,10 @@ impl Bank {
         Bank {
             accounts: vec![],
         }
+    }
+
+    fn addAccount(&mut self, account: Account) {
+        self.accounts.push(account);
     }
 }
 
@@ -44,6 +52,10 @@ fn add_account(bank: &mut Bank, account: Account) {
     bank.accounts.push(account);
 }
 
+fn print_bank(bank: &Bank) {
+    println!("{:#?}", bank);
+}
+
 fn main() {
     let mut bank = Bank::new();
     let account1 = Account::new(1, String::from("Ruslan Lesnikovskiy"));
@@ -61,7 +73,16 @@ fn main() {
     println!("{:#?}", account);
 
     let mut monobank = Bank::new();
-    let account = Account::new(299, String::from("Genadiy Moskalenko"));
+    let mut account = Account::new(299, String::from("Genadiy Moskalenko"));
+    account.setBalance(999);
+
     add_account(&mut monobank, account);
+
     println!("{:#?}", monobank);
+
+    let mut privat = Bank::new();
+    let marina_acc = Account::new(12, String::from("Marina Buzova"));
+    privat.addAccount(marina_acc);
+
+    print_bank(&privat);
 }
