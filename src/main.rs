@@ -14,12 +14,14 @@ impl Account {
         }
     }
 
-    fn deposit(&mut self, amount: i32) {
+    fn deposit(&mut self, amount: i32) -> i32 {
         self.balance += amount;
+        self.balance
     }
 
-    fn withdraw(&mut self, amount: i32) {
+    fn withdraw(&mut self, amount: i32) -> i32 {
         self.balance -= amount;
+        self.balance
     }
 }
 
@@ -57,10 +59,12 @@ fn main() {
     println!("{:#?}", bank);
 
     let mut acc = Account::new(2, String::from("Jason"));
-    acc.deposit(999);
+    let balance = acc.deposit(999);
 
+    println!("Deposit success. Your balance is {}", balance);
     println!("{:#?}", acc);
 
-    acc.withdraw(555);
+    let balance = acc.withdraw(555);
+    println!("Widthraw operation. Your balance is {}", balance);
     println!("{:#?}", acc);
 }
