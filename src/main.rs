@@ -32,9 +32,8 @@ fn print_accounts(bank: &Bank) {
     println!("{:#?}", bank.accounts);
 }
 
-fn change_account(mut account: Account) -> Account {
+fn change_account(account: &mut Account) {
     account.balance = 100;
-    account
 }
 
 fn main() {
@@ -48,6 +47,6 @@ fn main() {
     print_accounts(&bank);
 
     let mut account = Account::new(3, String::from("Trump"));
-    account = change_account(account);
+    change_account(&mut account);
     println!("{:#?}", account);
 }
