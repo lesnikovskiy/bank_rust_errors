@@ -85,4 +85,10 @@ fn main() {
     privat.addAccount(marina_acc);
 
     print_bank(&privat);
+
+    // values from stack do not follow ownership rules
+    // all numbers, char, tuples, arrays, bool
+    let num = 5;
+    let other_num = num;
+    println!("{} {}", num, other_num);
 }
